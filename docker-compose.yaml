@@ -42,3 +42,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+  
+  infopanel:
+    restart: always
+    container_name: "infopanel"
+    image: breiti78/rpi-rgb-led-matrix-infopanel:latest
+    
