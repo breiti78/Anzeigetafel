@@ -46,5 +46,5 @@ services:
   infopanel:
     restart: always
     container_name: "infopanel"
-    image: breiti78/rpi-rgb-led-matrix-infopanel:latest
-    
+    build: ./infopanel
+    privileged: true
