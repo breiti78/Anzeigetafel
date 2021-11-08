@@ -31,12 +31,10 @@ sprites:
     TextLine2:
         type: DynamicFancyText
         data_label: textline2
-        value_color: green
         font_name: 10x20.bdf
     TextLine3:
         type: DynamicFancyText
         data_label: textline3
-        value_color: gree
         font_name: 10x20.bdf
     TextLine4:
         type: DynamicFancyText
@@ -73,16 +71,16 @@ sprites:
         value_color: blue
     scu_logo:
         type: Image
-        path: /app/infopanel/config/logos/SCU-LOGO.jpg
+        path: /data/infopanel/logos/SCU-LOGO.jpg
     altherr_logo:
         type: Image
-        path: /app/infopanel/config/logos/altherrLogo.png
+        path: /data/infopanel/logos/altherrLogo.png
     ossv_logo:
         type: Image
-        path: /app/infopanel/config/logos/OSSVLogo.png
+        path: /data/infopanel/logos/OSSVLogo.png
     applause:
         type: AnimatedGif
-        path: /app/infopanel/config/logos/applaus.gif
+        path: /data/infopanel/logos/applaus.gif
 scenes:
     scn-applause:
         sprites:
@@ -165,10 +163,6 @@ modes:
     - scn-applause:
         brightness: 70
         duration: 10 
-    md-timing:
-    - scn-timing:
-        brightness: 70
-        duration: 500
 global:
-    font_dir: /app/infopanel/config/fonts
+    font_dir: /data/infopanel/fonts
     default_mode: md-welcome

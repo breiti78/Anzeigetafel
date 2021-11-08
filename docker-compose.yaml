@@ -5,7 +5,7 @@ services:
   mqtt:
     restart: always
     container_name: "mqtt"
-    build: ./mosquitto
+    image: eclipse-mosquitto:2.0.8
     environment:
       - MQTTSERVER=mqtt
       - MQTTPORT=1883
@@ -19,8 +19,11 @@ services:
  
   infopanel:
     restart: always
+    tty: true
     container_name: "infopanel"
-    build: ./infopanel
+    image: breiti78/rpi-rgb-led-matrix-infopanel:latest
     privileged: true
     volumes:
-     - /data/infopanel:/app/infopanel
+     - /data/infopanel:/app/infopanel/config
+    command: >
+      python3 -m infopanel --config=/app/infopanel/config/infopanel-config.yaml
