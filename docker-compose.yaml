@@ -1,50 +1,26 @@
 version: "3.9"
 
-volumes:
-  node-red-data:
-  portainer_data:
-
 #Definition of the services
 services:
   mqtt:
     restart: always
     container_name: "mqtt"
     build: ./mosquitto
-    env_file:
-    - env.list    
+    environment:
+      - MQTTSERVER=mqtt
+      - MQTTPORT=1883
+      - MOSQUITTO_USERNAME=mqtt
+      - MOSQUITTO_PASSWORD=mqtt
+      - TZ=Europe/Zurich
     ports:
       - 1883:1883
     volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
-
-  nodered:
-    restart: always
-    container_name: "nodered"
-    build: ./nodered
-    env_file:
-    - env.list
-    volumes:
-      - node-red-data:/data
-    ports:
-      - 1880:1880
-    depends_on:
-      - mqtt
-
-  portainer:
-    restart: always
-    container_name: "portainer"
-    image: portainer/portainer
-    env_file:
-    - env.list    
-    ports:
-      - 9000:9000
-      - 8000:8000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-  
+      - /data/mosquitto:/mosquitto
+ 
   infopanel:
     restart: always
     container_name: "infopanel"
     build: ./infopanel
     privileged: true
+    volumes:
+     - /data/infopanel:/app/infopanel
