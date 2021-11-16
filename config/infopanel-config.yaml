@@ -1,0 +1,258 @@
+mqtt:
+    broker: mqtt
+    port: 1883
+    client_id: screen
+    keepalive: 60
+    username: mqtt
+    password: mqtt
+    topic: anzeigetafel/#
+
+RGBMatrix:
+    led-rows: 32
+    led-cols: 64
+    led-pixel-mapper: U-mapper
+    led-chain: 6
+    led-parallel: 1
+    led-pwm-bits: 11
+    led-brightness: 100
+    led-gpio-mapping: adafruit-hat-pwm
+    led-scan-mode: 1
+    led-pwm-lsb-nanoseconds: 130
+    led-show-refresh: false
+    led-slowdown-gpio: 2
+    led-no-hardware-pulse: false
+
+sprites: 
+    TextLine1:
+        type: DynamicFancyText
+        data_label: textline1
+        text_color: colorline1
+        font_name: 6x12.bdf
+    TextLine2:
+        type: DynamicFancyText
+        data_label: textline2
+        text_color: colorline2
+        font_name: 10x20.bdf
+    TextLine3:
+        type: DynamicFancyText
+        data_label: textline3
+        text_color: colorline3
+        font_name: 10x20.bdf
+    TextLine4:
+        type: DynamicFancyText
+        data_label: textline4
+        font_name: 6x12.bdf
+        text_color: colorline4
+    TextLine5:
+        type: DynamicFancyText
+        data_label: textline5
+        font_name: 6x12.bdf
+        text_color: colorline5
+    TimingLine1:
+        type: DynamicFancyText
+        data_label: line1
+        value_color: red
+        font_name: 6x12.bdf
+    TimingLine2:
+        type: DynamicFancyText
+        data_label: line2
+        font_name: 10x20.bdf
+    TimingLine3:
+        type: DynamicFancyText
+        data_label: line3
+        font_name: 10x20.bdf
+    TimingLine4:
+        type: DynamicFancyText
+        data_label: line4
+        font_name: 6x12.bdf
+        value_color: blue
+    TimingLine5:
+        type: DynamicFancyText
+        data_label: line5
+        font_name: 6x12.bdf
+        value_color: blue
+    scu_logo:
+        type: Image
+        path: /data/infopanel/logos/SCU-LOGO.jpg
+    altherr_logo:
+        type: Image
+        path: /data/infopanel/logos/altherrLogo.png
+    ossv_logo:
+        type: Image
+        path: /data/infopanel/logos/OSSVLogo.png
+    helvetia_logo:
+        type: Image
+        path: /data/infopanel/logos/helvetia.png
+    orthopaedie_logo:
+        type: Image
+        path: /data/infopanel/logos/orthopaedie.png         
+    raiffeisen_logo:
+        type: Image
+        path: /data/infopanel/logos/raiffeisen.png
+    hirslanden_logo:
+        type: Image
+        path: /data/infopanel/logos/hirslanden.png
+    autotreff_logo:
+        type: Image
+        path: /data/infopanel/logos/autotreff.png
+    mettler_logo:
+        type: Image
+        path: /data/infopanel/logos/mettler.png
+    rabau_logo:
+        type: Image
+        path: /data/infopanel/logos/rabau.png
+    zeller_logo:
+        type: Image
+        path: /data/infopanel/logos/zeller.png
+    baumann_logo:
+        type: Image
+        path: /data/infopanel/logos/baumann.png
+    update_logo:
+        type: Image
+        path: /data/infopanel/logos/update.png
+    applause:
+        type: AnimatedGif
+        path: /data/infopanel/logos/applaus.gif
+scenes:
+    scn-applause:
+        sprites:
+        - applause:
+    scn-helvetia:
+        sprites:
+        - helvetia_logo:
+    scn-update:
+        sprites:
+        - update_logo:
+    scn-baumann:
+        sprites:
+        - baumann_logo:
+    scn-orthopaedie:
+        sprites:
+        - orthopaedie_logo:
+    scn-zeller:
+        sprites:
+        - zeller_logo:
+    scn-rabau:
+        sprites:
+        - rabau_logo:
+    scn-autotreff:
+        sprites:
+        - autotreff_logo:
+    scn-mettler:
+        sprites:
+        - mettler_logo:
+    scn-raiffeisen:
+        sprites:
+        - raiffeisen_logo:
+    scn-hirslanden:
+        sprites:
+        - hirslanden_logo:
+    scn-scu_logo:
+        sprites:
+        - scu_logo:
+    scn-altherr_logo:
+        sprites:
+        - altherr_logo:
+    scn-ossv_logo:
+        sprites:
+        - ossv_logo:
+    scn-welcome:
+        type: Welcome
+    scn-time: 
+        type: Time
+        sprites:
+        - TimingLine1:
+           x: 3
+           y: 10
+    scn-blank: 
+        type: Blank
+    scn-timing: 
+        sprites:
+        - TimingLine1:
+            x: 3
+            y: 10
+        - TimingLine2:
+            x: 0
+            y: 26
+        - TimingLine3:
+            x: 0
+            y: 42
+        - TimingLine4:
+            x: 0
+            y: 54
+        - TimingLine5:
+            x: 0
+            y: 63
+    scn-text: 
+        sprites:
+        - TextLine1:
+            x: 2
+            y: 8
+        - TextLine2:
+            x: 1
+            y: 24
+        - TextLine3:
+            x: 1
+            y: 42
+        - TextLine4:
+            x: 1
+            y: 53
+        - TextLine5:
+            x: 1
+            y: 62
+modes: 
+    md-applause:
+    - scn-applause:
+        brightness: 70
+        duration: 500  
+    md-welcome:
+    - scn-welcome:
+        duration: 2
+    md-time: 
+    - scn-time:
+        brightness: 70
+        duration: 500
+    md-logo:
+    - scn-rabau:
+        brightness: 70
+        duration: 10
+    - scn-zeller:
+        brightness: 70
+        duration: 10
+    - scn-autotreff:
+        brightness: 70
+        duration: 10
+    - scn-helvetia:
+        brightness: 70
+        duration: 10
+    - scn-mettler:
+        brightness: 100
+        duration: 10
+    - scn-baumann:
+        brightness: 100
+        duration: 10
+    - scn-orthopaedie:
+        brightness: 100
+        duration: 10 
+    - scn-update:
+        brightness: 70
+        duration: 10 
+    - scn-hirslanden:
+        brightness: 70
+        duration: 10 
+    - scn-raiffeisen:
+        brightness: 70
+        duration: 10 
+    - scn-ossv_logo:
+        brightness: 70
+        duration: 10 
+    - scn-applause:
+        brightness: 70
+        duration: 10 
+    md-timing:
+    - scn-timing:
+        brightness: 70
+        duration: 500
+global:
+    font_dir: /data/infopanel/fonts
+    default_mode: md-welcome
