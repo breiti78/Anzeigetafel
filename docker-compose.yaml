@@ -24,6 +24,17 @@ services:
     image: breiti78/rpi-rgb-led-matrix-infopanel:latest
     privileged: true
     volumes:
-     - /data/infopanel:/app/infopanel/config
+     - /data/infopanel:/data/infopanel
+    environment:
+     - TZ=Europe/Zurich
     command: >
-      python3 -m infopanel --config=/app/infopanel/config/infopanel-config.yaml
+      python3 -m infopanel --config=/data/infopanel/infopanel-config.yaml
+
+  anzeigetafel-web:
+    restart: always
+    container_name: "anzeigetafel-web"
+    image: breiti78/anzeigetafel-web:latest
+    environment:
+      - TZ=Europe/Zurich
+    ports: 
+      - 80:5000
